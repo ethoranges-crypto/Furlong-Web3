@@ -45,6 +45,7 @@ In VS Code (or any editor), use **Find in Files** (`Ctrl/Cmd+Shift+F`) to find e
 | ☐ | Stats | `[X]` | index.html, "Track record" section |
 | ☐ | Testimonials | `[Placeholder quote` / `[Name]` | index.html, "Testimonials" section |
 | ☐ | Founder bio | `[Founder Name]` | index.html, "About" section |
+| ☐ | Logos (carousel + testimonials) | `assets/logos/logo-` | index.html; see "Adding logos" below |
 | ☐ | Brand name | `Furlong Web3` | see section 5 |
 | ☐ | Privacy note | `EDIT:` comments | privacy.html (date, retention period, analytics line) |
 | ☐ | Analytics (optional) | `YOUR-CLOUDFLARE-TOKEN` | index.html `<head>` |
@@ -61,6 +62,36 @@ Each block of copy has a comment above it, e.g. `<!-- EDIT: problem card 2 -->`.
 ### Optional extras (already in the code, switched off)
 - **Calendly calendar on the page:** in the Contact section, delete the two lines marked `START` and `END` around the embed. Note: Calendly sets cookies.
 - **Analytics:** in `<head>`, pick Plausible *or* Cloudflare Web Analytics and delete the `START`/`END` lines around it. Both are cookie-free.
+
+---
+
+## Adding logos
+
+Logos appear in two places, and all of them live in `assets/logos/`. The six files `logo-1.svg` to `logo-6.svg` are grey placeholders. Replace or delete them once your real logos are in.
+
+**Only use a company's logo with its permission.**
+
+### Logo carousel ("Trusted by teams across DeFi", below the hero)
+In `index.html`, find `LOGO CAROUSEL`. The instructions are in a comment at the top of it.
+
+- **Add a logo:** put the file in `assets/logos/` (e.g. `acme.svg`). Then copy one `<li>` line and change its `src`, `alt`, `width` and `height`. **Do this in both lists**: the main list and the duplicate list underneath. The duplicate is what makes the loop seamless, so the two lists must match.
+- **Remove a logo:** delete its `<li>` line from **both** lists.
+- **Change the speed:** in `styles.css`, change `--marquee-speed: 40s;`. A bigger number is slower. Add a few seconds for each logo you add so the speed stays roughly the same.
+- **Change the heading:** edit the text inside `<h2 class="marquee-label">`.
+- **Link a logo to the company's site (optional):** use the "Linked example" shown in the comment. In the duplicate list, also add `tabindex="-1"` to that `<a>` so keyboard users don't tab through each link twice.
+
+Logos show in grey, slightly faded, and switch to full colour on hover. The carousel pauses on hover. For visitors who have "reduce motion" turned on, it doesn't scroll at all and shows a centred row instead.
+
+### Testimonial logos
+In each testimonial card there's a line marked `<!-- EDIT: testimonial N logo -->`. Change `src` and `alt` (e.g. `alt="Acme logo"`). If a testimonial has no logo, delete the `<img ...>` line and the card closes up neatly.
+
+### `width` and `height`: what to put
+These stop the page jumping while images load. They only need the right **proportions**, because the CSS sets the actual display size. For a logo about three times wider than tall, use `width="120" height="40"`. For a square one, use `width="40" height="40"`. In an SVG file, the `viewBox="0 0 W H"` at the top tells you the proportions.
+
+### Tips for good-looking logos
+- Use **SVG** where possible. It's sharp at any size and tiny. Otherwise use a **PNG with a transparent background**, at least 2× the display height (about 80px tall).
+- **Trim the empty space** around the logo, or it will look smaller and off-centre next to the others. Figma, Illustrator or a free online "SVG crop" tool can do this.
+- Prefer the horizontal (wide) version of a logo, and a single-colour version if the company has one.
 
 ---
 
