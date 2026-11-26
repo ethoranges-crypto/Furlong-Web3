@@ -245,10 +245,9 @@ html:not(.js) .header-inner { flex-wrap: wrap; }
 .marquee-list a { display: block; border-radius: 6px; }
 .marquee-list img {
   height: var(--logo-h); width: auto; max-width: none;
-  filter: grayscale(1); opacity: .6;
-  transition: filter .3s ease, opacity .3s ease;
+  /* Logos show in their true colours. For a greyed-out look, add:
+     filter: grayscale(1); opacity: .6; */
 }
-.marquee-list li:hover img { filter: none; opacity: 1; }
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
